@@ -1,13 +1,14 @@
- <nav class="navbar navbar-default">
-  		<div class="container-fluid">
-    		<div class="navbar-header">
-      		<a class="navbar-brand" href="#">SafeStops</a>
-    	</div>
-    		<ul class="nav navbar-nav">
-     			 <li class="active"><a href="#">Home</a></li>
-      			<li><a href="#">Page 1</a></li>
-      			<li><a href="#">Page 2</a></li>
-      			<li><a href="#">Page 3</a></li>
-    		</ul>
-  		</div>
-	</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">SafeStops</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/safeStops/">SafeStops</a>
+        <a class="nav-link" href="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</nav>
