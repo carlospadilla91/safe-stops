@@ -19,6 +19,7 @@
                 <input id="password" name="password" class="form-control" type="password" required>
             </div>
             <input type="submit" class="btn btn-primary btn-block mt-1" value="Log In">
+            <div class="text-danger">${error}</div>
         </form>
     </div>
     

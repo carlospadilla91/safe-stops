@@ -15,8 +15,8 @@
     <main class="container-fluid">
     	<div class="p-5 mb-4 bg-light rounded-3">
     		<div class="container-fluid py-5">
-    			<h1 class="title p-4 mb-3 bg-secondary text-light rounded-2">SafeStops</h1>
-    			<p class="col-md-8 fs-5">Hit the road safely!</p>
+    			<h1 class="title p-4 mb-3 bg-success text-light rounded-2">SafeStops</h1>
+    			<p class="col-md-8 fs-5 text-success">Hit the road safely!</p>
     		</div>
     	</div>
     </main>

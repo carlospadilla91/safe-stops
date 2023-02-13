@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.safeStops.model.User;
 
-//import com.safeStops.model.User;
-//import com.safeStops.service.UserService;
-
 @Controller
 public class HomeController {
 	
@@ -31,11 +28,11 @@ public class HomeController {
 			if(user.getUsername().equals("carlos") && user.getPassword().equals("password1234")) {
 				return "redirect:/safeStops/";
 			} else {
-				model.addAttribute("error", "Invalid Details");
+				model.addAttribute("error", "Incorrect Username or Password");
 				return "/login";
 			}
 		} else {
-			model.addAttribute("error", "Invalid Details");
+			model.addAttribute("error", "Incorrect Username or Password");
 			return "/login";
 		}
 		

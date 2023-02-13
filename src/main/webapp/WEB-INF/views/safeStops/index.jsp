@@ -31,12 +31,11 @@
 		</table>
 		</div>
 	
-	<div class="formcontainer mt-3" ng-controller="SafeStopController as ctrl">
+	<div class="formcontainer mt-3">
 	<h1 class="panel-heading"><span>Add a new SafeStop!</span></h1>
 			<div class="card card-body">
 				<div class="panel panel-default">
 				
-					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="safeStopForm"
 							class="form-horizontal">
 							<input type="hidden"  ng-model="ctrl.safeStop.id" />
@@ -88,9 +87,7 @@
 								</div>
 							</div>
 						</form>
-					</div>
 				</div>
-
 			</div>
 		</div>
 	
