@@ -1,22 +1,28 @@
 package com.safeStops.configuration;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.h2.tools.Server;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
+@ComponentScan({"com.safeStops"})
 public class HibernateConfig {
 	
 	@Autowired private Environment environment;
@@ -32,12 +38,13 @@ public class HibernateConfig {
 	
 	@Bean
 	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-		dataSource.setUsername(environment.getProperty("jdbc.username"));
-		dataSource.setUsername(environment.getProperty("jdbc.password"));
-		return dataSource;
+		return new EmbeddedDatabaseBuilder()
+				.generateUniqueName(false)
+				.setName("test")
+				.setType(EmbeddedDatabaseType.H2)
+				.setScriptEncoding("UTF-8")
+				.ignoreFailedDrops(true)
+				.build();
 	}
 	
 	private Properties hibernateProperties() {
@@ -51,10 +58,17 @@ public class HibernateConfig {
 		
 	
 	@Bean
-	public HibernateTransactionManager getTransactionManager() {
+	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-		transactionManager.setSessionFactory(sessionFactory().getObject());
+		transactionManager.setSessionFactory(sessionFactory);
 		return transactionManager;
 	}
+	
+	@Bean
+	private static void openServerModeInBrowser() throws SQLException {
+        Server server = Server.createTcpServer().start();
+        System.out.println("Server started and connection is open.");
+        System.out.println("URL: jdbc:h2:" + server.getURL() + "/mem:test");
+    }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.safeStops.controller")
+@ComponentScan(basePackages = "com.safeStops")
 public class AppConfig implements WebMvcConfigurer {
 	
 	@Override
