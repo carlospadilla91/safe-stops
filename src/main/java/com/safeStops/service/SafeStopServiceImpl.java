@@ -17,6 +17,7 @@ public class SafeStopServiceImpl implements SafeStopService {
 	@Override
 	@Transactional
 	public List<SafeStop> findAllSafeStops() {
+		System.out.println("Session status: service ");
 		return safeStopsDAO.findAllSafeStops();
 	}
 	

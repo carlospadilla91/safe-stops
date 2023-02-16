@@ -13,7 +13,7 @@ angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', functio
 	
 	function findAllSafeStops() {
 		var deferred = $q.defer();
-		$http.get(LOCAL + 'index').then(function(response) {
+		$http.get(LOCAL + 'list').then(function(response) {
 			deferred.resolve(response.data);
 		},
 			function(err) {

@@ -7,13 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.safeStops.model.SafeStop;
 import com.safeStops.service.SafeStopService;
 
@@ -22,15 +19,12 @@ public class SafeStopController {
 	
 	@Autowired
 	SafeStopService safeStopService;
+
 	
-	@RequestMapping(value = "/safeStops", method = RequestMethod.GET)
-	public String listSafeStops() {
-		return "/safeStops/index";
-	}
-	
-	@RequestMapping(value = "/safeStops/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/safeStops/list", method = RequestMethod.GET)
 	public ResponseEntity<List<SafeStop>> getSafeStopsList() {
-		return new ResponseEntity<List<SafeStop>>(safeStopService.findAllSafeStops(), HttpStatus.OK);
+		List<SafeStop> safeStops = safeStopService.findAllSafeStops();
+		return new ResponseEntity<List<SafeStop>>(safeStops, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/safeStops/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,10 +56,10 @@ public class SafeStopController {
 	
 	@RequestMapping(value = "/safeStops", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createSafeStop(@RequestBody SafeStop safeStop) {
-		if(safeStopService.isSafeStopExist(safeStop)) {
-			System.out.println("A SafeStop with name " + safeStop.getName() + " already exist");
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		}
+//		if(safeStopService.isSafeStopExist(safeStop)) {
+//			System.out.println("A SafeStop with name " + safeStop.getName() + " already exist");
+//			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//		}
 		
 		safeStopService.saveSafeStop(safeStop);
 		

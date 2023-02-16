@@ -56,8 +56,9 @@ public class SafeStopDAOImpl implements SafeStopDAO {
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<SafeStop> findAllSafeStops() {
+		System.out.println("Session status: ");
 		Session currentSession = sessionFactory.getCurrentSession();
-		CriteriaBuilder cb = (currentSession).getCriteriaBuilder();
+		CriteriaBuilder cb = currentSession.getCriteriaBuilder();
 		CriteriaQuery<SafeStop> cq = cb.createQuery(SafeStop.class);
 		Root<SafeStop> root = cq.from(SafeStop.class);
 		cq.select(root);
