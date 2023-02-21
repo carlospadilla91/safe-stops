@@ -43,10 +43,11 @@ angular.module('safeStopApp').controller('SafeStopController', ['$scope', 'SafeS
 	
 	function remove(id) {
 		console.log('id to be deleted', id);
-		if(self.safeStop.id === id) {
-			reset();
+		let accept = confirm("Are you sure you want to delete this SafeStop?");
+		if(accept) {
+			deleteSafeStop(id);
 		}
-		deleteSafeStop(id);
+		reset();
 	}
 	
 	function submit() {

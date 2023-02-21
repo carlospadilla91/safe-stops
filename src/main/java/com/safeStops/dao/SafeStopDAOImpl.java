@@ -47,17 +47,11 @@ public class SafeStopDAOImpl implements SafeStopDAO {
 	}
 
 	@Override
-	public void deleteSafeStop(Long id) {
-		Session currentSession;
-		try {
-			currentSession = sessionFactory.getCurrentSession();
-		} catch(HibernateException e) {
-			currentSession = sessionFactory.openSession();
-		}
-		
-		SafeStop safeStop = currentSession.byId(SafeStop.class).load(id);
-		currentSession.delete(safeStop);
-		currentSession.flush();
+	public void deleteSafeStop(Long id) {		
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("delete from SafeStop where id= :id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 		
 	}
 
