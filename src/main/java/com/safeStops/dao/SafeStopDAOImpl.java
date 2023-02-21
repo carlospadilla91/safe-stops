@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,16 @@ public class SafeStopDAOImpl implements SafeStopDAO {
 
 	@Override
 	public void deleteSafeStop(Long id) {
-		Session currentSession = sessionFactory.getCurrentSession();
+		Session currentSession;
+		try {
+			currentSession = sessionFactory.getCurrentSession();
+		} catch(HibernateException e) {
+			currentSession = sessionFactory.openSession();
+		}
+		
 		SafeStop safeStop = currentSession.byId(SafeStop.class).load(id);
 		currentSession.delete(safeStop);
+		currentSession.flush();
 		
 	}
 

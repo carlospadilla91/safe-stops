@@ -52,7 +52,7 @@ angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', functio
 	
 	function deleteSafeStop(id) {
 		var deferred = $q.defer();
-		console.log(id);
+		console.log('safestop to be deleted', id);
 		$http.delete(LOCAL + id)
 		.then(function (response) {
 			deferred.resolve(response.data);

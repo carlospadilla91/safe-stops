@@ -45,6 +45,7 @@ public class SafeStopServiceImpl implements SafeStopService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteSafeStop(Long id) {
 		safeStopsDAO.deleteSafeStop(id);
 		
