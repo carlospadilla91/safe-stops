@@ -6,6 +6,8 @@ angular.module('safeStopApp').controller('SafeStopController', ['$scope', 'SafeS
 	self.safeStops = [];
 	self.submit = submit;
 	self.reset = reset;
+	self.edit = edit;
+	self.remove = remove;
 	
 	findAllSafeStops();
 	
@@ -32,6 +34,21 @@ angular.module('safeStopApp').controller('SafeStopController', ['$scope', 'SafeS
 		});
 	}
 	
+	function deleteSafeStop(id) {
+		SafeStopService.deleteSafeStop(id)
+			.then(findAllSafeStops, function(err) {
+				console.error('Error deleting SafeStop');
+			});
+	}
+	
+	function remove(id) {
+		console.log('id to be deleted', id);
+		if(self.safeStop.id === id) {
+			reset();
+		}
+		deleteSafeStop(id);
+	}
+	
 	function submit() {
 		if(self.safeStop.id === null) {
 			console.log('Saving new safeStop', self.safeStop);
@@ -42,6 +59,16 @@ angular.module('safeStopApp').controller('SafeStopController', ['$scope', 'SafeS
 			console.log('SafeStop updated with id: ', self.safeStop.id);
 		}
 		reset();
+	}
+	
+	function edit(id) {
+		console.log('id to be edited', id);
+		for(const stop of self.safeStops) {
+			if(stop.id === id) {
+				self.safeStop = angular.copy(stop);
+				break;
+			}
+		}
 	}
 	
 	function reset() {
