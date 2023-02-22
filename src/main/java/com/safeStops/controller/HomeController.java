@@ -22,6 +22,11 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/safeStops", method = RequestMethod.GET)
+	public String listSafeStops() {
+		return "/safeStops/index";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model, @ModelAttribute("user") User user) {
 		if(user != null && user.getUsername() != null && user.getPassword() != null) {

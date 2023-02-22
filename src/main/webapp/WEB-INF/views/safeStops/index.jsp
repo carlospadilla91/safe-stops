@@ -22,10 +22,14 @@
 			    </tr>
 			  </thead>
 		  <tbody>
-		    <tr ng-repeat="stop in ctrl.safeStops track by $index">
+		    <tr ng-repeat="stop in ctrl.safeStops">
 		      <td><span ng-bind="stop.name"></span></td>
               <td><span ng-bind="stop.description"></span></td>
               <td><span ng-bind="stop.rating"></span></td>
+              <td>
+              	<button type="button" ng-click="ctrl.edit(stop.id)" class="btn btn-success">Edit</button>
+              	<button type="button" ng-click="ctrl.remove(stop.id)" class="btn btn-danger">Delete</button>
+              </td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -65,7 +69,7 @@
 									<label class="col-md-2 control-lable" for="rating">Rating</label>
 									<div class="col-md-7">
 										<select class="form-select" aria-label="Default select example" ng-model="ctrl.safeStop.rating" id="rating">
-										  <option selected>None selected</option>
+										  <option selected value="">None selected</option>
 										  <option value="1">One (Worst)</option>
 										  <option value="2">Two</option>
 										  <option value="3">Three</option>

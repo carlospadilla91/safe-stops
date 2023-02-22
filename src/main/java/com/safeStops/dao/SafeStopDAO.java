@@ -1,11 +1,10 @@
-package com.safeStops.service;
+package com.safeStops.dao;
 
 import java.util.List;
 
-
 import com.safeStops.model.SafeStop;
 
-public interface SafeStopService {
+public interface SafeStopDAO {
 	
 	SafeStop findById(Long id);
 	
