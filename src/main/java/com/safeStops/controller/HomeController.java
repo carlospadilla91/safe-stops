@@ -22,6 +22,11 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String registerPage() {
+		return "register";
+	}
+	
 	@RequestMapping(value = "/safeStops", method = RequestMethod.GET)
 	public String listSafeStops() {
 		return "/safeStops/index";

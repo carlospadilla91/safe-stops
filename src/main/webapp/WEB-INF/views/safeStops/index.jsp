@@ -51,6 +51,9 @@
 											id="name" class=" form-control input-sm"
 											placeholder="Enter name" required
 											 />
+											 <div class="has-error" ng-show="safeStopForm.$dirty">
+											 	<span ng-show="safeStopForm.name.$error.required">This is a required field</span>
+											 </div>
 									</div>
 								</div>
 							</div>
@@ -61,6 +64,9 @@
 										<input type="text" ng-model="ctrl.safeStop.description" id="description"
 											class="form-control input-sm"
 											placeholder="Enter description" required />
+											<div class="has-error" ng-show="safeStopForm.$dirty">
+											 	<span ng-show="safeStopForm.description.$error.required">This is a required field</span>
+											 </div>
 									</div>
 								</div>
 							</div>

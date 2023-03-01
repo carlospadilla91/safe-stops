@@ -2,7 +2,7 @@
 
 angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', function($http, $q) {
 	
-	var LOCAL = 'http://localhost:8080/safeStops/';
+	var LOCAL = 'http://localhost:8081/api/safeStops';
 	
 	var factory = {
 		findAllSafeStops: findAllSafeStops,
@@ -14,7 +14,7 @@ angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', functio
 	
 	function findAllSafeStops() {
 		var deferred = $q.defer();
-		$http.get(LOCAL + 'list').then(function(response) {
+		$http.get(LOCAL).then(function(response) {
 			deferred.resolve(response.data);
 		},
 			function(err) {
@@ -40,7 +40,7 @@ angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', functio
 	
 	function updateSafeStop(safeStop, id) {
 		var deferred = $q.defer();
-		$http.put(LOCAL + id, safeStop).then(function(response) {
+		$http.put(LOCAL + '/' + id, safeStop).then(function(response) {
 			deferred.resolve(response.data);
 		},
 		function(err) {
@@ -53,7 +53,7 @@ angular.module('safeStopApp').factory('SafeStopService', ['$http', '$q', functio
 	function deleteSafeStop(id) {
 		var deferred = $q.defer();
 		console.log('safestop to be deleted', id);
-		$http.delete(LOCAL + id)
+		$http.delete(LOCAL + '/' + id)
 		.then(function (response) {
 			deferred.resolve(response.data);
 		},
