@@ -12,26 +12,28 @@ angular.module('safeStopApp').controller('AuthorizationController', ['$scope', '
 	function loginUser(user) {
 		
 		return AuthorizationService.loginUser(user).then(function(data) {
-			console.log('User login success', data);
+			console.log('User login success' + data);
 			if(user.username === data.username && user.password === data.password) {
 				toSafeStops();
 			} else {
+				$window.alert('Incorrect Username or Password');
 				redirect();
 			}
 		},
 			function(error) {
-				console.error('Error in loginUser Controller', error);
+				console.error('Error in loginUser Controller' + error);
 			}
 		);
 	}
 	
 	function createUser(user) {
 		
-		return AuthorizationService.createUser(user).then(redirect, function(data) {
-			console.log('New user created', data);
+		return AuthorizationService.createUser(user).then(function(data) {
+			console.log('New user created' + data);
+			redirect();
 		},
 		function(error) {
-			console.error('Error in createUser Controller', error);
+			console.error('Error in createUser Controller' + error);
 		}
 		);
 	}

@@ -13,11 +13,11 @@ angular.module('safeStopApp').factory('AuthorizationService', ['$http', '$q', fu
 	function createUser(user) {
 		var deferred = $q.defer();
 		$http.post(LOCAL + 'register', user).then(function(response) {
-			console.log('New User created', response.data)
+			console.log('New User created' + response)
 			deferred.resolve(response.data);
 		},
 		function(error) {
-			console.error('Error', error);
+			console.error('Error' + error);
 			deferred.reject(error);
 		}
 	);
@@ -31,7 +31,7 @@ angular.module('safeStopApp').factory('AuthorizationService', ['$http', '$q', fu
 			deferred.resolve(response.data);
 		},
 		function(error) {
-			console.error('Error in login');
+			console.error('Error in login' + error);
 			deferred.reject(error);
 		}
 	);
